@@ -1,0 +1,79 @@
+                       [ acrotsr v0.9.0 README ]
+                         by Zachary P. Landau
+
+[ description ]
+
+  Acrotsr is an IRC game where players are given an acronym and the users
+  have a certain amount of time to think of what they think the acronym
+  should stand for. Then the people in the channel vote on which one is
+  best. Other acrobots can be found in channels such as #acrobot on
+  EFNet and some other IRC networks. (see history)
+
+[ history ]
+
+  Two of my acquaintances, by the nicknames elman and criscokid, repeatedly
+  harassed me to play acro in #acro with them. They also somehow managed to
+  convince my girlfriend to play. Upon playing we found a few things that  
+  the acrobot did or didn't do that we felt the need to bitch about. My 
+  girlfriend hated one of the problems so much she refused to play. So as
+  a service to these people, I decided it was my duty as a friend, an 
+  American citizen, and potentially a descendent of the homo erectus to write
+  a version that we could customize and fondle. And so it was born. And so
+  they are in debt to me. And so criscokid owes me a damn ice cream. And this
+  README is getting less and less serious as I go on.
+
+[ installation & setup ]
+
+  You will need to get Net::IRC to use this script. Try CPAN. You'll also
+  need Term::ReadKey if you use generate.pl. You may run the bot from any
+  directory you please. Then you can set it up:
+
+  There first thing you will want to do is edit the values at the top of 
+  acrotsr.pl. Make sure you at least change the bot's nickname and channel.
+  After that you may want to change some of the delays and suchlike.  If you 
+  want the bot to stay on a server and run all the time, run it with nohup.
+
+  If you want to have html output with the top scores you will have to do 
+  a few things. First, make sure $game{'score_output'} is set to 1 (default).
+  Then, load up parsescores.pl and edit the values in there. You may want to
+  change what the outputted HTML looks like. Right now, it looks like crap.
+  You'll probably want to put parsescores.pl in crontab. I haven't tested it 
+  but something like this should work:
+
+  45 6 * * *       /path/to/parsescores.pl
+
+  That should run it every day at 6:45. You will probably want to edit 
+  nickalts.data. The first field contains a persons main nickname. The rest
+  of them are alternative nicknames they use which will be translated to the
+  first name.
+
+[ how to play ]
+
+  The instructions given by the bot should be sufficient for most of this but
+  I'll explain here anyway. To start a game type !start in the channel. Anyone
+  can start a game at the moment, and I'm hoping this won't be abused. Once
+  the game starts it will give everyone an acronym. Then everyone /msgs the
+  bot "acro put the acronym here". Then the various entries will be displayed
+  and each entry will be given a number. Then people vote by /msging the bot
+  "acro #". You cannot vote for your own entry. After that, the results are
+  displayed and the next round starts. It will go on until all rounds are over
+  or someone types !stop. (or not enough entries are submitted for 2 rounds)
+
+[ administration ]
+
+  It is possible to control and change certain aspects of the bot through IRC.
+  The first thing you will want to do is change the password. The $password
+  variable asks for the crypted password (including the two character salt in
+  the beginning) You can use generate.pl and then paste that value into 
+  $password. Make sure you change the default password, because it is 
+  'password'. Then /msg bot .access [password]. Once you leave the channel or
+  quit irc you will have to repeat that command. You may then /msg bot .help
+  for a list of commands. 
+
+[ contact ]
+
+  URL: http://hypa.net/~kapheine/acrotsr/index.php
+  Email: kapheine@hypa.net
+
+Last updated: Thu Mar 30 01:15:53 EST 2000
+
